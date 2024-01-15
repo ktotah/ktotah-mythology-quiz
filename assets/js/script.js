@@ -56,7 +56,7 @@ function renderQuestion(index){
     choicesEl.innerHTML = ''; // Clear previous choices
 
     question.choices.forEach((choice, idx) => {
-        const button = document.createElement('button');
+        const button = document.createElement('button'); // for each choice in the choices array of the current question, a button element is created
         button.textContent = choice;
         button.addEventListener('click', () => selectAnswer(idx, index));
         choicesEl.appendChild(button);
@@ -94,7 +94,7 @@ function selectAnswer(choiceIndex, questionIndex) {
 function endQuiz() {
     clearInterval(timer); // Stop the timer
     quizContainer.classList.add('hide'); // Hide quiz container
-    // Show results and prompt for user intials and submitting score
+    document.getElementById('score-submission').classList.remove('hide'); // Show score submission
 }
 
 // Save High Score Function 
@@ -113,9 +113,19 @@ function displayHighScores() {
     .join('')
 }
 
-// Add Event Listeners
+// Event Listeners for Start Button
 startBtn.addEventListener('click', startGame); // Click the Start Button to start the quiz
-// MORE EVENT LISTENERS for answer buttons, high score submission, etc. 
+
+// Event Listener for high score submission 
+document.getElementById('submit-score-btn').addEventListener('click', () => {
+    const userInitials = document.getElementById('user-initials').value; // Get initials from input field
+
+    if(userInitials){
+        saveHighScore(userInitials);
+        document.getElementById('score-submission').classList.add('hide'); // Hide score submission section 
+    }
+})
+
 
 // Initailize Quiz on Page Load
 document.addEventListener('DOMContentLoaded', () => {
