@@ -1,1 +1,1 @@
-# ktotah-mythology-quiz
+# Greek Mythology Quiz
