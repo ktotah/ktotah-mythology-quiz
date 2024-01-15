@@ -39,3 +39,43 @@
     // Submit score button click to handle high score submission.
 
 // Initialize the quiz on page load to set up any necessary state or UI.
+
+const startBtn = document.getElementById('start-btn');
+const quizContainer = document.getElementById('quiz-container');
+const questionEl = document.getElementById('question');
+const choicesEl = document.getElementById('choices');
+const feedbackEl = document.getElementById('feedback');
+const timerEl = document.getElementById('time');
+const progressEl = document.getElementById('progress');
+const currentQuestionNumberEl = document.getElementById('current-question-number');
+const totalQuestionsEl = document.getElementById('total-questions');
+
+let currentQuestionIndex = 0;
+
+// Function to handle answer selection
+function selectionAnswer(choiceIndex, questionIndex) {
+    const question = questions[questionIndex];
+
+    // Check if the answer is correct
+    if (question.choices[choiceIndex] === question.correct) {
+        feedbackEl.textContent = "Correct!";
+        feedbackEl.style.color = "green";
+    } else {
+        feedbackEl.textContent = "Wrong!";
+        feedbackEl.style.color = "red";
+    }
+
+    //Show feedback message for a brief period and then move to the next question or end the quiz
+    setTimeout(() => {
+        feedbackEl.textContent = "";
+        if (currentQuestionIndex < questions.length - 1){
+            // Move to the next question
+            currentQuestionIndex++;
+            renderQuestion(currentQuestionIndex);
+        } else {
+            // End the Quiz
+            endQuiz();
+        }
+    }, 1000); // Feedback message shown for 1 second
+}
+

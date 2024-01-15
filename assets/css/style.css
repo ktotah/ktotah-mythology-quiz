@@ -6,3 +6,61 @@
     /* Style the high score input area to be prominent at the end of the quiz */
     /* Make buttons vistually appealing and interactive with hover effects */
     /* Ensure the layout is responsive to different screen sizes */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header {
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em;
+    background-color: #333;
+    color: white;
+}
+
+main {
+    flex: 1;
+    padding: 2em;
+}
+
+#question, #choices, #score-list {
+    margin-bottom: 1em;
+}
+
+.hide {
+    display: none;
+}
+
+button {
+    padding: 0.5em 1em;
+    margin-top: 1em;
+    cursor: pointer;
+}
+
+footer {
+    text-align: center;
+    padding: 1em;
+    background-color: #333;
+    color: white;
+}
+
+#feedback {
+    text-align: center;
+    color: green; /* or red if the answer is wrong */
+}
+
+#high-scores {
+    text-align: center;
+}
+
+
