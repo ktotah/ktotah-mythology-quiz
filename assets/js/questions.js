@@ -2,73 +2,19 @@
 const questions = [
     // QUESTION 1
     {
-        question: "Question A",
-        choices: ["Answer A1", "Answer A2", "Answer A3", "Answer A4"]
-        correct: "Answer A1"
+        question: "Question 1",
+        choices: ["Answer 1a", "Answer 1b", "Answer 1c", "Answer 1d"],
+        correct: "Answer 1a"
     },
 
     // QUESTION 2
     {
-        question: "Question A",
-        choices: ["Answer A1", "Answer A2", "Answer A3", "Answer A4"]
-        correct: "Answer A1"
+        question: "Question 2",
+        choices: ["Answer 2a", "Answer 2b", "Answer 2c", "Answer 2d"],
+        correct: "Answer 2c"
     },
 
-    // QUESTION 3
-    {
-        question: "Question A",
-        choices: ["Answer A1", "Answer A2", "Answer A3", "Answer A4"]
-        correct: "Answer A1"
-    },
-
-    // QUESTIN 4
-    {
-        question: "Question A",
-        choices: ["Answer A1", "Answer A2", "Answer A3", "Answer A4"]
-        correct: "Answer A1"
-    },
-
-    // QUESTION 5
-    {
-        question: "Question A",
-        choices: ["Answer A1", "Answer A2", "Answer A3", "Answer A4"]
-        correct: "Answer A1"
-    },
-
-    // QUESTION 6
-    {
-        question: "Question A",
-        choices: ["Answer A1", "Answer A2", "Answer A3", "Answer A4"]
-        correct: "Answer A1"
-    },
-
-    // QUESTION 7
-    {
-        question: "Question A",
-        choices: ["Answer A1", "Answer A2", "Answer A3", "Answer A4"]
-        correct: "Answer A1"
-    },
-
-    // QUESTION 8
-    {
-        question: "Question A",
-        choices: ["Answer A1", "Answer A2", "Answer A3", "Answer A4"]
-        correct: "Answer A1"
-    },
-
-    // QUESTION 9
-    {
-        question: "Question A",
-        choices: ["Answer A1", "Answer A2", "Answer A3", "Answer A4"]
-        correct: "Answer A1"
-    },
-
-    // QUESTION 10
-    {
-        question: "Question A",
-        choices: ["Answer A1", "Answer A2", "Answer A3", "Answer A4"]
-        correct: "Answer A1"
-    }
+    //...  MAKE MORE QUESTIONS LATER
 ];
 
 // Funciton to render a question

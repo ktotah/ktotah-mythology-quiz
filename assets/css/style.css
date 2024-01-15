@@ -54,11 +54,6 @@ footer {
     color: white;
 }
 
-#feedback {
-    text-align: center;
-    color: green; /* or red if the answer is wrong */
-}
-
 #high-scores {
     text-align: center;
 }

@@ -79,3 +79,51 @@ function selectionAnswer(choiceIndex, questionIndex) {
     }, 1000); // Feedback message shown for 1 second
 }
 
+
+// Function to start the timer
+function startTimer() {
+    // Defining timer logic
+    timerEl.textContent = 'Starting Timer...';
+    //Start the countdown
+    timerCount = 60; // Setting the starting time of 60 seconds
+    timerEl.textContent = timerCount;
+
+    // Update the timer every 1000ms (1 second)
+    const timer = setInterval(function(){
+        timerCount--;
+        timerEl.textContent = timerCount;
+        
+        // Check if the timer has reached 0
+        if (timerCount <= 0){
+            clearInterval(timer); // Stop the timer
+            endQuiz(); // Call endQuiz function to handle the end of the quiz
+        }
+    }, 1000);
+}
+// Function to start the game
+function startGame() {
+    // Hide the start button
+    startBtn.classList.add('hide');
+
+    // Reset any old quiz data if necessary
+    currentQuestionIndex = 0;
+
+    // Show the quiz container
+    quizContainer.classList.remove('hide');
+
+    // Start the timer for the quiz
+    startTimer();
+
+    // Render the first question
+    renderQuestion(currentQuestionIndex);
+}
+
+// Attach event listener to start button to call startGame function on click 
+startBtn.add('click', startGame);
+
+
+// endQuiz function
+function endQuiz(){
+    quizContainer.classList.add('hide'); // Hide the quiz container
+    startBtn.classList.remove('hide'); // Show the start button again for replay
+}
