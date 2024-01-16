@@ -135,7 +135,7 @@ document.getElementById('clear-scores').addEventListener('click', () => {
 
 // Event listener for retaking the quiz
 document.getElementById('retake-quiz').addEventListener('click', () => {
-    startQuiz():
+    startQuiz();
 })
 
 
