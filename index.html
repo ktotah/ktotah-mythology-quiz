@@ -1,13 +1,3 @@
-<!-- Create a main container for the quiz -->
-    <!-- Add a header section for the quiz title and high score link. -->
-    <!-- Add a section to display the timer -->
-    <!-- Add a section to hold the questions and answers. -->
-        <!-- This will initially be hidden and shown when the quiz starts -->
-    <!-- Add buttons for starting the quiz and viewing high scores -->
-    <!-- Add a section to enter initials for high scores after the quiz -->
-    <!-- Add a footer for any additional information -->
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,7 +11,7 @@
     <header>
         <h1>Greek Mythology Quiz</h1>
         <button id="start-btn">Start Quiz</button>
-        <div id="timer">Time: <span id="time">0</span></div> 
+        <div id="timer" class="hide">Time: <span id="time">0</span></div> 
     </header>
 
     <main>
@@ -34,7 +24,6 @@
 
         <div id="score-submission" class="hide">
             <p id="final-score"></p>
-            <p id="time-taken"></p>
             <input type="text" id="user-initials" placeholder="Enter Initials" />
             <button id="submit-score-btn">Submit Score</button>
         </div>
@@ -43,7 +32,7 @@
             <h2>High Scores</h2>
             <div id="score-list"></div>
             <button id="clear-scores">Clear High Scores</button>
-            <button id="back-btn">Go Back</button>
+            <button id="go-back">Go Back</button>
         </div>
     </main>
 
@@ -51,7 +40,6 @@
         <div id="progress" class="hide">Question <span id="current-question-number">1</span> of <span id="total-questions"></span></div>
     </footer>
 
-    <script src="assets/js/script.js"></script>
-    <script src="assets/js/questions.js"></script>
+    <script src="assets/js/script.js"></script>]
 </body>
 </html>

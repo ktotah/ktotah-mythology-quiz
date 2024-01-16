@@ -1,5 +1,7 @@
 // HTML Elements and UI Components (INITIAL VARIABLES)
 const startBtn = document.getElementById('start-btn');
+const goBackBtn = document.getElementById('go-back');
+const clearScoresBtn = document.getElementById('clear-scores');
 const quizContainer = document.getElementById('quiz-container');
 const questionEl = document.getElementById('question');
 const choicesEl = document.getElementById('choices');
@@ -15,9 +17,7 @@ let currentQuestionIndex = 0;
 let currentScore = 0;
 let timerCount = 60; // Total time for  quiz - 60 seconds
 let timer; // for setInterval and clearInterval
-
-// Feedback 
-let lastFeedback = '';
+let lastFeedback = ''; // for choice feedback 
 
 // High Scores
 let highScores = JSON.parse(localStorage.getItem('highScores')) || [];
@@ -46,6 +46,7 @@ function startQuiz() {
     startBtn.classList.add('hide'); // Hide start button
     quizContainer.classList.remove('hide'); // Show quiz container
     progressEl.classList.remove('hide'); // Show footer with quiz progress
+    timerEl.classList.remove('hide'); // Show timer with quiz starts
     currentScore = 0; // Reset score
     currentQuestionIndex = 0 // Start from first question
     lastFeedback = ''; // Reset feedback
@@ -88,12 +89,9 @@ function renderQuestion(index){
     currentQuestionNumberEl.textContent = index + 1;
     totalQuestionsEl.textContent = questions.length;
 
-    // Display last question's feedback if it exists
-    if (lastFeedback){
-        feedbackEl.textContent = lastFeedback;
-        //reset lastFeedback
-        lastFeedback = '';
-    }; 
+    // Display last question's feedback
+    feedbackEl.textContent = lastFeedback; // Display last feedback
+    lastFeedback = ''; //Clear last feedback 
 }
 
 // Function to handle answer selection and store feedback
@@ -101,15 +99,15 @@ function selectAnswer(choiceIndex, questionIndex) {
     // Check if answer is correct and set feedback / update score
     if (questions[questionIndex].choices[choiceIndex] === questions[questionIndex].correct) {
         currentScore++; // Increase score for correct answer
-        lastFeedback = "Correct!";
+        feedbackEl.textContent = "Correct!";
         feedbackEl.style.color = "green";
     } else {
-        lastFeedback = "Wrong!";
+        feedbackEl.textContent = "Wrong!";
         feedbackEl.style.color = "red";
     }
 
-    // Update score immediately
-    document.getElementById('score').textContent = currentScore;
+    // Store last feedback
+    lastFeedback = feedbackEl.textContent;
 
     // Move to the next question or end quiz after selecting a choice
     if (currentQuestionIndex < questions.length - 1) {
@@ -124,66 +122,77 @@ function selectAnswer(choiceIndex, questionIndex) {
 
 // End Quiz Function 
 function endQuiz() {
+    feedbackEl.textContent = lastFeedback; // Display last feedback
     clearInterval(timer); // Stop the timer
     quizContainer.classList.add('hide'); // Hide quiz container
     progressEl.classList.add('hide'); // Hide footer with quiz progress
-    // Show final score and time taken
-    showFinalScore();
-    // Show score submission
-    document.getElementById('score-submission').classList.remove('hide'); // Show score submission
+    setTimeout(() => {
+        feedbackEl.textContent = ''; // Clear feedback after a delay
+        showFinalScore(); // Show final score
+        document.getElementById('score-submission').classList.remove('hide'); // Show score submission
+    }, 700); // Delay feedback clear for 0.7 seconds
+
 }
 
-// Function to show final score and time taken
+// Function to show final score 
 function showFinalScore(){
-    //Calculate time taken
-    const timeTaken = 60 - timerCount;
     // Display final score and time
     document.getElementById('final-score').textContent = `Final Score: ${currentScore} out of ${questions.length}`;
-    document.getElementById('time-taken').textContent = `Time: ${timeTaken} seconds`
 }
 
 
 // Save High Score Function 
 function saveHighScore(initials) {
-    highScores.push({ initials, score: currentScore});
-    highScores.sort((a,b) => b.score - a.score);
+    highScores.push({ initials: initials, score: currentScore});
+    highScores.sort((a, b) => b.score - a.score);
     highScores = highScores.slice(0, 5); // Keep only top 5 scores
     localStorage.setItem('highScores', JSON.stringify(highScores));
-    displayHighScores();
+    displayHighScores(); // Call this function to update the display
+    document.getElementById('score-submission').classList.add('hide'); // Hide score submission section
+    document.getElementById('high-scores').classList.remove('hide'); // Show high scores section
 }
 
 // Display High Scores Function 
 function displayHighScores() {
-    highScoresEl.innerHTML = highScores
-    .map(score => `<p>${score.initials}: ${score}</p>`)
-    .join('')
+    // Target the element where the scores should be displayed
+    const scoreListDiv = document.getElementById('score-list');
+    scoreListDiv.innerHTML = highScores
+    .map(score => `<p>${score.initials} - ${score.score}</p>`)
+    .join('');
+    document.getElementById('high-scores').classList.remove('hide');
 }
 
 // Event listener for Start Button
 startBtn.addEventListener('click', startQuiz); // Click the Start Button to start the quiz
 
-// Event listener for high score submission 
+// Event listener for Submit Score Button
 document.getElementById('submit-score-btn').addEventListener('click', () => {
-    const userInitials = document.getElementById('user-initials').value; // Get initials from input field
+    const userInitials = document.getElementById('user-initials').value.trim(); // Get initials from input field
 
     if(userInitials){
         saveHighScore(userInitials);
-        document.getElementById('score-submission').classList.add('hide'); // Hide score submission section 
+    } else {
+        alert("Please enter your initials to submit your score.")
     }
 })
 
-// Event listener for retaking the quiz
-document.getElementById('clear-scores').addEventListener('click', () => {
+// Event listener for clearing the high scores by clicking the clear high scores button
+document.getElementById('clear-scores').addEventListener('click', clearHighScores);
+
+// Event listener for "go back" button (return to initial page state)
+document.getElementById('go-back').addEventListener('click', function() {
+    //hide the high scores and show the main page
+    document.getElementById('high-scores').classList.add('hide');
+    document.getElementById('start-btn').classList.remove('hide'); // Show start button
+    // RESET ANY OTHER NECESSARY STATES OR UI ELEMENTS TO RETURN TO THE MAIN PAGE STATE
+})
+
+// Function for clearing high scores
+function clearHighScores() {
     highScores = [];
     localStorage.setItem('highScores', JSON.stringify(highScores));
-    displayHighScores();
-})
-
-// Event listener for retaking the quiz
-document.getElementById('retake-quiz').addEventListener('click', () => {
-    startQuiz();
-})
-
+    displayHighScores(); // Update the display which should now be empty
+}
 
 // Initailize Quiz on Page Load
 document.addEventListener('DOMContentLoaded', () => {
