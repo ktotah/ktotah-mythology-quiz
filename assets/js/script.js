@@ -16,6 +16,9 @@ let currentScore = 0;
 let timerCount = 60; // Total time for  quiz - 60 seconds
 let timer; // for setInterval and clearInterval
 
+// Feedback 
+let lastFeedback = '';
+
 // High Scores
 let highScores = JSON.parse(localStorage.getItem('highScores')) || [];
 
@@ -45,6 +48,7 @@ function startQuiz() {
     progressEl.classList.remove('hide'); // Show footer with quiz progress
     currentScore = 0; // Reset score
     currentQuestionIndex = 0 // Start from first question
+    lastFeedback = ''; // Reset feedback
     startTimer(); // Start the quiz timer
     renderQuestion(currentQuestionIndex); // Render the first question 
 }
@@ -83,29 +87,39 @@ function renderQuestion(index){
     //Update progress display
     currentQuestionNumberEl.textContent = index + 1;
     totalQuestionsEl.textContent = questions.length;
+
+    // Display last question's feedback if it exists
+    if (lastFeedback){
+        feedbackEl.textContent = lastFeedback;
+        //reset lastFeedback
+        lastFeedback = '';
+    }; 
 }
 
-// Select Answer Function 
+// Function to handle answer selection and store feedback
 function selectAnswer(choiceIndex, questionIndex) {
+    // Check if answer is correct and set feedback / update score
     if (questions[questionIndex].choices[choiceIndex] === questions[questionIndex].correct) {
         currentScore++; // Increase score for correct answer
-        feedbackEl.textContent = "Correct!";
-        feedbackEl.style = "green";
+        lastFeedback = "Correct!";
+        feedbackEl.style.color = "green";
     } else {
-        feedbackEl.textContent = "Wrong!";
-        feedbackEl.style = "red";
+        lastFeedback = "Wrong!";
+        feedbackEl.style.color = "red";
     }
 
-    // Move to the next question or end quiz after a delay
+    // Update score immediately
+    document.getElementById('score').textContent = currentScore;
 
-    setTimeout(() => {
-        if (currentQuestionIndex < questions.length - 1) {
-            currentQuestionIndex++;
-            renderQuestion(currentQuestionIndex);
-        } else {
-            endQuiz();
-        }
-    }, 1000); 
+    // Move to the next question or end quiz after selecting a choice
+    if (currentQuestionIndex < questions.length - 1) {
+        currentQuestionIndex++;
+        // Render next question (with the last question's feedback if it exists)
+        renderQuestion(currentQuestionIndex);
+    } else {
+        // If no more questions, end the quiz
+        endQuiz();
+    }
 }
 
 // End Quiz Function 
@@ -113,8 +127,21 @@ function endQuiz() {
     clearInterval(timer); // Stop the timer
     quizContainer.classList.add('hide'); // Hide quiz container
     progressEl.classList.add('hide'); // Hide footer with quiz progress
+    // Show final score and time taken
+    showFinalScore();
+    // Show score submission
     document.getElementById('score-submission').classList.remove('hide'); // Show score submission
 }
+
+// Function to show final score and time taken
+function showFinalScore(){
+    //Calculate time taken
+    const timeTaken = 60 - timerCount;
+    // Display final score and time
+    document.getElementById('final-score').textContent = `Final Score: ${currentScore} out of ${questions.length}`;
+    document.getElementById('time-taken').textContent = `Time: ${timeTaken} seconds`
+}
+
 
 // Save High Score Function 
 function saveHighScore(initials) {

@@ -22,10 +22,15 @@ body {
 
 header {
     justify-content: space-between;
+    display: inline;
     align-items: center;
     padding: 1em;
     background-color: #333;
     color: white;
+}
+
+h1 {
+ /* ADD H1 STYLING */
 }
 
 main {
