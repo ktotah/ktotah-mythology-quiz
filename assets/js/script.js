@@ -47,6 +47,7 @@ function initializeQuizPage() {
     startQuiz();
 
     // Start Quiz Function 
+    // Initializes the quiz by resetting scores, setting the first question, and starting the timer
     function startQuiz() {
         currentScore = 0; // Reset score
         currentQuestionIndex = 0 // Start from first question
@@ -56,6 +57,7 @@ function initializeQuizPage() {
     }
 
     // Start Timer Function
+    // Begins the countdown for the quiz and handles the end of quiz if/when time runs out
     function startTimer() {
         timerCount = 60; // Reset timer count
         timerEl.textContent = timerCount; 
@@ -74,6 +76,7 @@ function initializeQuizPage() {
     }
 
     // Render Question Function 
+    // Displays the current question and its choices on the quiz page
     function renderQuestion(index){
         // Retrieve the current question object from the 'questions' array using the provided index
         const question = questions[index];
@@ -99,7 +102,8 @@ function initializeQuizPage() {
         lastFeedback = ''; //Clear last feedback 
     }
 
-    // Select Answer Function (handles answer selection and stores feedback)
+    // Select Answer Function 
+    // Handles the logic for when a user selects an answer, including score calculation and feedback
     function selectAnswer(choiceIndex, questionIndex) {
         // Check if answer is correct and set feedback / update score
         if (questions[questionIndex].choices[choiceIndex] === questions[questionIndex].correct) {
@@ -126,13 +130,15 @@ function initializeQuizPage() {
     }
 
     // End Quiz Function 
+    // Concludes the quiz, stops the timer, and calculates the final score
     function endQuiz() {
         feedbackEl.textContent = lastFeedback; // Display last feedback
         clearInterval(timer); // Stop the timer
 
         // Calculate final score
         let baseScore = 70; // Set the base score as 70 in this case because I have 7 questions on this quiz
-        currentScore = baseScore + timerCount - (questions.length - correctAnswers) * 10; // formula for score is you take the base score (70 in this case) and add the number of seconds remaining on the timer as a bonus and subtract 10 points for every incorrect answer.
+        currentScore = baseScore + (timerCount * 0.5) - ((questions.length - correctAnswers) * 10); // formula for score is you take the base score (70 in this case) and add half of the number of seconds remaining on the timer as a bonus and subtract 10 points for every incorrect answer.
+        currentScore = Math.ceil(currentScore); // Round up the final score to the nearest whole number
         currentScore = Math.max(currentScore, 0); // Ensure score doesn't go below 0 (which would never be the case the way I currently have the quiz set up with, but I wanted to implement this here in case of future additional questions, etc.)
         
 
@@ -146,10 +152,11 @@ function initializeQuizPage() {
     }
 
     // Show Final Score Function
+    // Displays the final score to the user with a breakdown of their performance
     function showFinalScore() {
         // Display final score and details
         const finalScoreDiv = document.getElementById('final-score');
-        finalScoreDiv.textContent = `You got ${correctAnswers} out of ${questions.length} questions correct.<br>` + `You completed the quiz with ${timerCount} seconds remaining.<br><br>` + `From a baseline of 70 points, you gain the number of seconds remaining on your timer as bonus points.<br>` + `10 points are subtracted for every wrong answer.<br><br>` + `Your final score is ${currentScore}.`;
+        finalScoreDiv.textContent = `You got ${correctAnswers} out of ${questions.length} questions correct.<br>` + `You completed the quiz with ${timerCount} seconds remaining.<br><br>` + `From a baseline of 70 points, you gain half the number of seconds remaining on your timer as bonus points.<br>` + `10 points are subtracted for every wrong answer.<br><br>` + `Your final score is ${currentScore}.`;
     }
 
     // Event listener for Submit Score Button
@@ -195,9 +202,9 @@ function displayHighScores() {
     //  Retrieve high scores from localStorage or initialize an empty array if none found
     let highScores = JSON.parse(localStorage.getItem('highScores')) || [];
 
-    // Populate the high scores list in the HTML
+    // Populate the high scores list in the HTML with ranking
     scoreListDiv.innerHTML = highScores
-    .map(score => `<p>${score.initials} - ${score.score}</p>`)
+    .map((score, index) => `<p>${index +1}. ${score.initials} - ${score.score}</p>`)
     .join('');
 
     // Event listener for clearing the high scores

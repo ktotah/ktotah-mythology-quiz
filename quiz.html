@@ -1,7 +1,5 @@
 <!-- quiz.html -->
-<!-- This page contains the main quiz functionality.
-     Keeping the quiz separate from the index and high scores pages allows for a focused and uninterrupted quiz-taking experience.
-     The separation of html pages (index, quiz, and high-scores) enhances user experience by dividing the quiz into clear, manageable sections. -->
+<!-- This page contains the main quiz functionality. Keeping the quiz separate from the index and high scores pages allows for a focused and uninterrupted quiz-taking experience. The separation of html pages (index, quiz, and high-scores) enhances user experience and simplifies the management of different application states (starting the quiz, taking the quiz, viewing scores). -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,12 +17,14 @@
 
     <main>
         <a href="index.html"><h1>Greek Mythology Quiz</h1></a>
+        <!-- Quiz Container -->
         <div id="quiz-container">
             <div id="question">Question Text</div>
             <div id="choices"></div>
             <div id="feedback"></div>
         </div>
 
+        <!-- Score Submission -->
         <div id="score-submission" class="hide">
             <div id="final-score"></div>
             <input type="text" id="user-initials" placeholder="Enter Initials" />

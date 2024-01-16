@@ -6,52 +6,52 @@
 
 // Array of question objects for the quiz
 const questions = [
-    // QUESTION 1
+    // QUESTION 1: Greek Goddess of Wisdom
     {
         question: "Who was the Greek goddess of wisdom, warfare, and crafts?",
-        choices: ["A) Aphrodite", "B) Athena", "C) Artemis", "D) Hera"],
-        correct: "B) Athena"
+        choices: ["A) Aphrodite", "B) Hera", "C) Artemis", "D) Athena"],
+        correct: "D) Athena"
     },
 
-    // QUESTION 2
+    // QUESTION 2: Slaying the Minotaur
     {
-        question: "Question 2",
-        choices: ["Answer 2a", "Answer 2b", "Answer 2c", "Answer 2d"],
-        correct: "Answer 2c"
+        question: "Which hero is known for slaying the Minotaur in the Labyrinth",
+        choices: ["A) Theseus", "B) Perseus", "C) Hercules", "D) Odysseus"],
+        correct: "A) Theseus"
     },
 
-    // QUESTION 3
+    // QUESTION 3: Apollo & Arthemis' Mother
     {
-        question: "Question 2",
-        choices: ["Answer 2a", "Answer 2b", "Answer 2c", "Answer 2d"],
-        correct: "Answer 2c"
+        question: "Who was the mother of Apollo and Artemis?",
+        choices: ["A) Leto", "B) Hera", "C) Rhea", "D) Demeter"],
+        correct: "A) Leto"
     },
 
-     // QUESTION 4
+     // QUESTION 4: Circe's Animals
+     {
+        question: "What animals did Circe famously turn men into?",
+        choices: ["A) Cats", "B) Pigs", "C) Crows", "D) Slugs"],
+        correct: "B) Pigs"
+    },
+
+     // QUESTION 5: Oracle of Delphi
+     {
+        question: "What was the name of the High Priestess of the Temple of Apollo at Delphi, who served as the Oracle?",
+        choices: ["A) Medea", "B) Pythia", "C) Cassandra", "D) Sibyl"],
+        correct: "B) Pythia"
+    },
+
+     // QUESTION 6: The Twelve Labors
      {
         question: "Who is known for completing the twelve labors in Greek mythology?",
-        choices: ["A) Achilles", "B) Perseus", "C) Theseus", "D) Heracles"],
-        correct: "D) Heracles"
+        choices: ["A) Achilles", "B) Perseus", "C) Hercules", "D) Theseus"],
+        correct: "C) Hercules"
     },
 
-     // QUESTION 5
+     // QUESTION 7: Last Item in Pandora's Box
      {
-        question: "Question 2",
-        choices: ["Answer 2a", "Answer 2b", "Answer 2c", "Answer 2d"],
-        correct: "Answer 2c"
-    },
-
-     // QUESTION 6
-     {
-        question: "Question 2",
-        choices: ["Answer 2a", "Answer 2b", "Answer 2c", "Answer 2d"],
-        correct: "Answer 2c"
-    },
-
-     // QUESTION 7
-     {
-        question: "Question 2",
-        choices: ["Answer 2a", "Answer 2b", "Answer 2c", "Answer 2d"],
-        correct: "Answer 2c"
+        question: "What was the only thing left in Pandora's box after she closed it?",
+        choices: ["A) Ambition", "B) Pride", "C) Hope", "D) Love"],
+        correct: "C) Hope"
     }
 ];
