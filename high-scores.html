@@ -1,3 +1,8 @@
+<!-- high-scores.html -->
+<!-- This page displays the high scores of the quiz.
+     It is separated from the quiz and index pages to allow users to view scores independently, etierh after completing a quiz or directorly from the link in the page header. 
+     The separation of html pages (index, quiz, and high-scores) enhances user experience and simplifies the management of different application states (starting the quiz, taking the quiz, viewing scores). -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,8 +25,10 @@
             <a href="index.html"><button id="go-back">Go Back</button></a>
         </div>
     </main>
-    <!-- including questions.js before script.js since script.js depends on data/variables defined in questions.js -->
-    <script src="assets/js/questions.js"></script> 
+    <!-- Including questions.js before script.js since script.js depends on data/variables defined in questions.js -->
+    <!-- Including questions.js: Contains the quiz questions, separated for ease of modification and reuse -->
+    <script src="assets/js/questions.js"></script>
+    <!-- Including script.js: Main quiz functionality, kept separate from content for better modularity -->
     <script src="assets/js/script.js"></script>
 </body>
 </html>

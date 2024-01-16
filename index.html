@@ -1,3 +1,8 @@
+<!-- index.html -->
+<!-- This is the landing page of the quiz application.
+     It provides an introduction to the quiz and a start button.
+     The separation of html pages (index, quiz, and high-scores) enhances user experience by diving the quiz into clear, manageable sections. -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,8 +24,10 @@
             <a href="quiz.html"><button id="start-btn">Start Quiz</button></a>
         </div>
     </main>
-     <!-- including questions.js before script.js since script.js depends on data/variables defined in questions.js -->
+    <!-- Including questions.js before script.js since script.js depends on data/variables defined in questions.js -->
+    <!-- Including questions.js: Contains the quiz questions, separated for ease of modification and reuse -->
     <script src="assets/js/questions.js"></script>
+    <!-- Including script.js: Main quiz functionality, kept separate from content for better modularity -->
     <script src="assets/js/script.js"></script>
 </body>
 </html>
