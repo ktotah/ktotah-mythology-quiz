@@ -42,6 +42,7 @@ const questions = [
 function startQuiz() {
     startBtn.classList.add('hide'); // Hide start button
     quizContainer.classList.remove('hide'); // Show quiz container
+    progressEl.classList.remove('hide'); // Show footer with quiz progress
     currentScore = 0; // Reset score
     currentQuestionIndex = 0 // Start from first question
     startTimer(); // Start the quiz timer
@@ -111,6 +112,7 @@ function selectAnswer(choiceIndex, questionIndex) {
 function endQuiz() {
     clearInterval(timer); // Stop the timer
     quizContainer.classList.add('hide'); // Hide quiz container
+    progressEl.classList.add('hide'); // Hide footer with quiz progress
     document.getElementById('score-submission').classList.remove('hide'); // Show score submission
 }
 
