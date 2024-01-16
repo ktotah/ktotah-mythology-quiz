@@ -21,8 +21,8 @@ let highScores = JSON.parse(localStorage.getItem('highScores')) || [];
 
 // Array of Questions and Answers (imported from questions.js or defined here)
 
-// Start Game Function 
-function startGame() {
+// Start Quiz Function 
+function startQuiz() {
     startBtn.classList.add('hide'); // Hide start button
     quizContainer.classList.remove('hide'); // Show quiz container
     currentScore = 0; // Reset score
@@ -113,10 +113,10 @@ function displayHighScores() {
     .join('')
 }
 
-// Event Listeners for Start Button
-startBtn.addEventListener('click', startGame); // Click the Start Button to start the quiz
+// Event listener for Start Button
+startBtn.addEventListener('click', startQuiz); // Click the Start Button to start the quiz
 
-// Event Listener for high score submission 
+// Event listener for high score submission 
 document.getElementById('submit-score-btn').addEventListener('click', () => {
     const userInitials = document.getElementById('user-initials').value; // Get initials from input field
 
@@ -124,6 +124,18 @@ document.getElementById('submit-score-btn').addEventListener('click', () => {
         saveHighScore(userInitials);
         document.getElementById('score-submission').classList.add('hide'); // Hide score submission section 
     }
+})
+
+// Event listener for retaking the quiz
+document.getElementById('clear-scores').addEventListener('click', () => {
+    highScores = [];
+    localStorage.setItem('highScores', JSON.stringify(highScores));
+    displayHighScores();
+})
+
+// Event listener for retaking the quiz
+document.getElementById('retake-quiz').addEventListener('click', () => {
+    startQuiz():
 })
 
 
