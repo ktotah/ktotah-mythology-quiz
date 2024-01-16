@@ -107,10 +107,56 @@ button:hover {
 }
 
 
+/* Quiz styles */
+#quiz-container {
+    width: 100%; /* Full width of the container */
+    max-width: 700px; /* Maximum width of the container */
+    min-height: 250px; /* Minimum height of the container */;
+    margin: 20px auto; /* Centering the container */
+    text-align: left;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#quiz-container.hide {
+    display: none; /* make sure the quiz-container isn't displayed when hidden bc something in the quiz-container styling was overriding the class of 'hide' - so fixing it here by specifying the display of none via css when hidden */
+}
+
+#question {
+    margin-top: 30px;
+    margin-bottom: 10px; /* Space between question and choices */
+    font-size: 24px;
+    min-height: 70px; /* Minimum height for the question to maintain a consistent position */
+}
+
 #choices {
+    width: 100%; /* Ensures the container for choices doesn't change size */
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+}
+
+/* Feedback styles */
+#feedback {
+    font-style: italic;
+    font-size: 17px;
+    border-top: 1px solid #c7c7c79a; /* Line separating current choices from last question feedback */
+    padding-top: 10px; /* Spacing from the line */
+    margin-top: 20px; /* Spacing from the choices */
+}
+
+#final-score {
+    font-size: 18px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+#user-intials {
+    width: 70%;
+    padding: 10px;
+    margin-right: 10px; /* spacing between intials input and submit score button */
 }
 
 #high-scores-list {
