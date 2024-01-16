@@ -65,13 +65,21 @@ a {
 h1 {
     color: rgb(66, 0, 128);
     font-size: 2.5em;
-    margin-bottom: 0.5em;
+    align-items: flex-start;
+}
+
+h2 {
+    margin-bottom: 1.2em;
 }
 
 p {
     font-size: 1.6em;
-    margin-bottom: 1;
     color: black;
+}
+
+#initial-page p{
+    margin-top: 4.5em;
+    margin-bottom: 1.2em;
 }
 
 .hide {
@@ -90,12 +98,28 @@ button {
     display: inline-block;
     font-size: 18px;
     border-radius: 5px;
+    transition: background-color 0.3s ease; /* Transiton for hover effect */
 }
+
+button:hover {
+    background-color: plum; /* Text color change when hovered on */
+    text-decoration: none;
+}
+
 
 #choices {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+}
+
+#high-scores-list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+    justify-content: space-between;
+    padding-left: 120px;
 }
 
 
