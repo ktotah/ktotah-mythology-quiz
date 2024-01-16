@@ -156,7 +156,8 @@ function initializeQuizPage() {
     function showFinalScore() {
         // Display final score and details
         const finalScoreDiv = document.getElementById('final-score');
-        finalScoreDiv.innerHTML = `You got ${correctAnswers} out of ${questions.length} questions correct.<br>` + `You completed the quiz with ${timerCount} seconds remaining.<br><br>` + `From a baseline of 70 points, you gain half the number of seconds remaining on your timer as bonus points.<br>` + `10 points are subtracted for every wrong answer.<br><br>` + `Your final score is ${currentScore}.`;
+        finalScoreDiv.innerHTML = `You got ${correctAnswers} out of ${questions.length} questions correct.<br>` + `You completed the quiz with ${timerCount} seconds remaining.<br><br>` + // `From a baseline of 70 points, you gain half the number of seconds remaining on your timer as bonus points.<br>` + `10 points are subtracted for every wrong answer.<br><br>` + 
+        `Your final score is ${currentScore}.`;
     }
 
     // Event listener for Submit Score Button
