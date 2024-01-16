@@ -3,6 +3,7 @@ let currentQuestionIndex = 0;
 let currentScore = 0;
 let timerCount = 60; // Total time for the quiz - 60 seconds
 let timer; // For setInterval and clearInterval
+let correctAnswers = 0; // Number of correct answers at the beginning of the quiz
 
 // Check which page is loaded and initialize accordingly
 document.addEventListener('DOMContentLoaded', () => {
@@ -102,7 +103,7 @@ function initializeQuizPage() {
     function selectAnswer(choiceIndex, questionIndex) {
         // Check if answer is correct and set feedback / update score
         if (questions[questionIndex].choices[choiceIndex] === questions[questionIndex].correct) {
-            currentScore++; // Increase score for correct answer
+            correctAnswers++; // Increment for correct answers
             feedbackEl.textContent = "Correct!";
             feedbackEl.style.color = "green";
         } else {
@@ -128,7 +129,12 @@ function initializeQuizPage() {
     function endQuiz() {
         feedbackEl.textContent = lastFeedback; // Display last feedback
         clearInterval(timer); // Stop the timer
-        quizContainer.classList.add('hide'); // Hide quiz container
+
+        // Calculate final score
+        let baseScore = 70; // Set the base score as 70 in this case because I have 7 questions on this quiz
+        currentScore = baseScore + timerCount - (questions.length - correctAnswers) * 10; // formula for score is you take the base score (70 in this case) and add the number of seconds remaining on the timer as a bonus and subtract 10 points for every incorrect answer.
+        currentScore = Math.max(currentScore, 0); // Ensure score doesn't go below 0 (which would never be the case the way I currently have the quiz set up with, but I wanted to implement this here in case of future additional questions, etc.)
+
         setTimeout(() => {
             feedbackEl.textContent = ''; // Clear feedback after a delay
             showFinalScore(); // Show final score
@@ -137,22 +143,33 @@ function initializeQuizPage() {
 
     }
 
+    // Show Final Score Function
+    function showFinalScore() {
+        // Display final score and details
+        const finalScoreDiv = document.getElementById('final-score');
+        finalScoreDiv.textContent = `You got ${correctAnswers} out of ${questions.length} questions correct.<br>` + `You completed the quiz with ${timerCount} seconds remaining.<br><br>` + `From a baseline of 70 points, you gain the number of seconds remaining on your timer as bonus points.<br>` + `10 points are subtracted for every wrong answer.<br><br>` + `Your final score is ${currentScore}.`;
+    }
+
     // Event listener for Submit Score Button
     submitScoreBtn.addEventListener('click', () => {
-        // Trime whitespace from user initials and convert to uppercase
-        const userInitials = userInitialsInput.value.trim().toUpperCase();
-        
-        // Check if initials are entered
-        if (userInitials) {
-            saveHighScore(userInitials);
-            // Redirect to high-scores page after saving score
-            window.location.href = "high-scores.html";
+        // Trim whitespace from user initials and convert to uppercase
+        let userInitials = userInitialsInput.value.trim().toUpperCase();
+
+        // Regular expression to match only letter characters (A-Z)
+        const lettersOnly = /^[A-Z]+$/;
+
+        // Check if the initials contain only letters
+        if (userInitials.match(lettersOnly)) {
+            if (userInitials.length > 3) {
+                alert("Please enter a maximum of 3 letters for initials to submit your score.");
+                return;
+            }
         } else {
-            // Alert if no initials are entered
-            alert("Please enter your initials to submit your score.");
+            alert("Please enter only letter characters for initials (max. 3).")
         }
     });
 }
+        
 
 
 // HIGH SCORES PAGE
@@ -202,12 +219,7 @@ function clearHighScores() {
     displayHighScores();
 }
 
-
-
-
-
-
-// Array of question objects
+// ARRAY OF QUESTION OBJECTS
 const questions = [
     // QUESTION 1
     {
