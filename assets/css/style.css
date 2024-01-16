@@ -1,12 +1,3 @@
-/* Style the main container to be centered  */
-    /* Style the header with a large font size and position it at the top */
-    /* Style the timer to be visible and at the top right corner */
-    /* Style the question and answer section to be user-friendly */
-        /* Use clear and distinct styles for buttons and selectable items */
-    /* Style the high score input area to be prominent at the end of the quiz */
-    /* Make buttons vistually appealing and interactive with hover effects */
-    /* Ensure the layout is responsive to different screen sizes */
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -22,18 +13,28 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1em;
     background-color: white;
 }
 
-#high-scores-link {
+#high-scores-link a{
     position: absolute;
     top: 20px;
     left: 20px;
     cursor: pointer;
-    color: plum;
-    text-decoration: underline;
+    color: plum; /* Initial link color */
+    text-decoration: none;
     font-size: 1.2em;
+    transition: color 0.3s ease; /* Transition for hover effect */
+}
+
+#high-scores-link a:link, #high-scores-link a:visited{
+    color: plum; /* Original link color */
+    text-decoration: none; /* Ensures no underline */
+}
+
+#high-scores-link a:hover{
+    color: rgb(66, 0, 128); /* Text color change when hovered on */
+    text-decoration: none; /* Ensures no underline appears on hover */
 }
 
 #timer {
@@ -96,3 +97,6 @@ button {
     flex-direction: column;
     align-items: flex-start;
 }
+
+
+ /* TO DO: Ensure the layout is responsive to different screen sizes */
