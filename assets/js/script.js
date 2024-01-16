@@ -134,9 +134,11 @@ function initializeQuizPage() {
         let baseScore = 70; // Set the base score as 70 in this case because I have 7 questions on this quiz
         currentScore = baseScore + timerCount - (questions.length - correctAnswers) * 10; // formula for score is you take the base score (70 in this case) and add the number of seconds remaining on the timer as a bonus and subtract 10 points for every incorrect answer.
         currentScore = Math.max(currentScore, 0); // Ensure score doesn't go below 0 (which would never be the case the way I currently have the quiz set up with, but I wanted to implement this here in case of future additional questions, etc.)
+        
 
         setTimeout(() => {
             feedbackEl.textContent = ''; // Clear feedback after a delay
+            document.getElementById('quiz-container').classList.add('hide'); // Hide quiz container after completing quiz
             showFinalScore(); // Show final score
             document.getElementById('score-submission').classList.remove('hide'); // Show score submission
         }, 700); // Delay feedback clear for 0.7 seconds
