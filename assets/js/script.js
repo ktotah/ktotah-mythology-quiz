@@ -158,14 +158,12 @@ function initializeQuizPage() {
         // Regular expression to match only letter characters (A-Z)
         const lettersOnly = /^[A-Z]+$/;
 
-        // Check if the initials contain only letters
-        if (userInitials.match(lettersOnly)) {
-            if (userInitials.length > 3) {
-                alert("Please enter a maximum of 3 letters for initials to submit your score.");
-                return;
-            }
+        // Check if the initials contain only letters and are of valid length
+        if (userInitials.length >= 2 && userInitials.length <= 3 &&userInitials.match(lettersOnly)) {
+            saveHighScore(userInitials);
+            window.location.href = 'high-scores.html';
         } else {
-            alert("Please enter only letter characters for initials (max. 3).")
+            alert("Please enter initials using 2 to 3 letters only to submit your score")
         }
     });
 }
