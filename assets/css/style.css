@@ -64,8 +64,9 @@ a {
 
 h1 {
     color: rgb(66, 0, 128);
-    font-size: 2.5em;
+    font-size: 3.5em;
     align-items: flex-start;
+    font-weight: bolder;
 }
 
 h2 {
@@ -78,8 +79,8 @@ p {
 }
 
 #initial-page p{
-    margin-top: 4.5em;
-    margin-bottom: 1.2em;
+    margin-top: 2em;
+    margin-bottom: 1.5em;
 }
 
 .hide {
