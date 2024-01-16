@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
+  <title>Quiz Page</title>
+</head>
+<body>
+    <header>
+        <div id="high-scores-link"><a href="high-scores.html">View high scores</a></div>
+        <div id="timer">Time: <span id="time">0</span></div>
+    </header>
+
+    <main>
+        <a href="index.html"><h1>Greek Mythology Quiz</h1></a>
+        <div id="quiz-container" class="hide">
+            <div id="question">Question Text</div>
+            <div id="choices"></div>
+            <div id="feedback"></div>
+        </div>
+
+        <div id="score-submission" class="hide">
+            <div id="final-score"></div>
+            <input type="text" id="user-initials" placeholder="Enter Initials" />
+            <button id="submit-score-btn">Submit Score</button>
+        </div>
+    </main>
+</body>
+</html>
