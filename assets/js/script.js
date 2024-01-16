@@ -19,7 +19,24 @@ let timer; // for setInterval and clearInterval
 // High Scores
 let highScores = JSON.parse(localStorage.getItem('highScores')) || [];
 
-// Array of Questions and Answers (imported from questions.js or defined here)
+// Array of question objects
+const questions = [
+    // QUESTION 1
+    {
+        question: "Question 1",
+        choices: ["Answer 1a", "Answer 1b", "Answer 1c", "Answer 1d"],
+        correct: "Answer 1a"
+    },
+
+    // QUESTION 2
+    {
+        question: "Question 2",
+        choices: ["Answer 2a", "Answer 2b", "Answer 2c", "Answer 2d"],
+        correct: "Answer 2c"
+    },
+
+    //...  MAKE MORE QUESTIONS LATER
+];
 
 // Start Quiz Function 
 function startQuiz() {
