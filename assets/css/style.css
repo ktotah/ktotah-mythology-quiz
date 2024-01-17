@@ -1,7 +1,9 @@
+/* Global styles */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  text-decoration: none; /* Ensures no text-decoration within the entire project so there are no underlines for any links */
 }
 
 body, html {
@@ -9,6 +11,12 @@ body, html {
   height: 100%;
 }
 
+/*  Utility classes */
+.hide {
+    display: none;
+}
+
+/* Header styles */
 header {
     display: flex;
     justify-content: space-between;
@@ -22,19 +30,17 @@ header {
     left: 20px;
     cursor: pointer;
     color: plum; /* Initial link color */
-    text-decoration: none;
     font-size: 1.2em;
     transition: color 0.3s ease; /* Transition for hover effect */
 }
 
 #high-scores-link a:link, #high-scores-link a:visited{
     color: plum; /* Original link color */
-    text-decoration: none; /* Ensures no underline */
 }
 
 #high-scores-link a:hover{
     color: rgb(66, 0, 128); /* Text color change when hovered on */
-    text-decoration: none; /* Ensures no underline appears on hover */
+    
 }
 
 #timer {
@@ -45,6 +51,7 @@ header {
     font-size: 1.2em;
 }
 
+/* Main content styles */
 main {
     display: flex;
     flex-direction: column;
@@ -58,14 +65,11 @@ main {
     padding-right: 20%;
 }
 
-a {
-    text-decoration: none;
-}
 
+/* Typography */
 h1 {
     color: rgb(66, 0, 128);
     font-size: 3.5em;
-    align-items: flex-start;
     font-weight: bolder;
 }
 
@@ -83,10 +87,7 @@ p {
     margin-bottom: 1.5em;
 }
 
-.hide {
-    display: none;
-}
-
+/* Button styles */
 button {
     margin-top: 1em;
     cursor: pointer;
@@ -95,7 +96,6 @@ button {
     color: white;
     padding: 15px 32px;
     text-align: center;
-    text-decoration: none;
     display: inline-block;
     font-size: 18px;
     border-radius: 5px;
@@ -104,9 +104,7 @@ button {
 
 button:hover {
     background-color: plum; /* Text color change when hovered on */
-    text-decoration: none;
 }
-
 
 /* Quiz styles */
 #quiz-container {
@@ -122,7 +120,7 @@ button:hover {
 }
 
 #quiz-container.hide {
-    display: none; /* make sure the quiz-container isn't displayed when hidden bc something in the quiz-container styling was overriding the class of 'hide' - so fixing it here by specifying the display of none via css when hidden */
+    display: none; /* Makes sure the quiz-container isn't displayed concurrently with score submission bc something in the quiz-container styling was overriding the class of 'hide' -  fixing it here by specifying, after the general quiz-container styling, that the css should make the quiz-container the display of none via css when hidden */
 }
 
 #question {
@@ -132,6 +130,7 @@ button:hover {
     min-height: 70px; /* Minimum height for the question to maintain a consistent position */
 }
 
+/* Choice button styles */
 #choices {
     width: 100%; /* Ensures the container for choices doesn't change size */
     display: flex;
@@ -139,10 +138,16 @@ button:hover {
     align-items: flex-start;
 }
 
+#choices button {
+    min-width: 180px; /* Uniform button width for the choices buttons that accommadates the lengths of all choices text */
+    text-align: left; 
+    padding-left: 10px;
+}
+
 /* Feedback styles */
 #feedback {
     font-style: italic;
-    font-size: 17px;
+    font-size: 18px;
     border-top: 1px solid #c7c7c79a; /* Line separating current choices from last question feedback */
     padding-top: 10px; /* Spacing from the line */
     margin-top: 20px; /* Spacing from the choices */
@@ -163,11 +168,43 @@ button:hover {
 #high-scores-list {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    padding: 10px;
-    justify-content: space-between;
-    padding-left: 120px;
+    align-items: center;
+    padding: 25px;
 }
 
+ /* MEDIA QUERIES - responsive design adjustments */
+ /* featuring adjustments for standard breakpoints as well as specific breakpoints that were determined via testing various viewpoints*/
+ @media (max-width: 985px) {
+    main {
+        padding: 30px;
+        padding-left: 15%;
+        padding-right: 15%;
+    }
+ }
+ 
+ @media (max-width: 768px) {
+    main {
+        padding: 30px;
+        padding-left: 10%;
+        padding-right: 10%;
+    }
 
- /* TO DO: Ensure the layout is responsive to different screen sizes */
+    h1 {
+        font-size: 3.1em;
+    }
+ }
+
+ @media (max-width: 570px) {
+    main {
+        padding: 30px;
+        padding-left: 7%;
+        padding-right: 7%;
+    }
+    h1 {
+    font-size: 2.4em;
+    }
+    
+    p {
+    font-size: 1.4em;
+    }
+ }
