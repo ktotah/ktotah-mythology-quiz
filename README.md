@@ -7,7 +7,7 @@
 - [Usage](#usage)
 - [Application Demo](#application-demo)
 - [Testing](#testing)
-- [Author and Acknowledgment](#author-and-acknowledgment)
+- [Author and Acknowledgment](#author-and-acknowledgement)
 - [License](#license)
 
 
@@ -32,6 +32,10 @@ To take the Greek Mythology Quiz, follow these steps:
 
 
 ## Application Demo
+
+The following animation demonstrates the appearance and functionality of the Greek Mythology Quiz, showcasing the quiz interface, question format, and the high-score functionality:
+
+![A user clicks through a timed, interactive multiple-choice quiz on Greek Mythology. Their score is provided at the end of the quiz and then thy enter intials to save the high score before resetting and starting over.](./assets/media/quiz-demo.gif)
 
 ## Testing
 
