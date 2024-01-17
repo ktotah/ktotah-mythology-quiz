@@ -20,7 +20,7 @@ In creating this Greek Mythology Quiz, I furthered my understanding in dynamic H
 This project was created entirely from scratch as part of my journey to becoming a full-stack web developer. It is intended as a hands-on exercise in creating a dynamic web application using HTML, CSS, JavaScript, and Web APIs.
 
 ## Deployed Application
-The deployed application can be viewed here: []()
+The deployed application can be viewed here: [https://ktotah.github.io/ktotah-mythology-quiz/](https://ktotah.github.io/ktotah-mythology-quiz/)
 
 ## Usage
 To take the Greek Mythology Quiz, follow these steps:
