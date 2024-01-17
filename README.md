@@ -36,7 +36,14 @@ To take the Greek Mythology Quiz, follow these steps:
 The following images are screenshots from the Greek Mythology Quiz application, showcasing its design and functionality. These images provide a glimpse into the user interface and the interactive experience of the quiz.
 
 
-![A user clicks through a timed, interactive multiple-choice quiz on Greek Mythology. Their score is provided at the end of the quiz and then thy enter intials to save the high score before resetting and starting over.](./assets/media/quiz-demo.gif)
+### Landing Page
+![Screenshot of the Greek Mythology Quiz landing page](assets/media/screenshot-index.png)
+### Quiz Question
+![Screenshot of the Greek Mythology Quiz landing page](assets/media/screenshot-quiz.png)
+
+### High Scores
+![Screenshot of the Greek Mythology Quiz landing page](assets/media/screenshot-hs.png)
+
 
 ## Testing
 
