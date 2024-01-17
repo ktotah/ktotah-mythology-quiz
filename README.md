@@ -5,7 +5,7 @@
 - [Project Background](#project-background)
 - [Deployed Application](#deployed-application)
 - [Usage](#usage)
-- [Application Demo](#application-demo)
+- [Screenshots](#screenshots)
 - [Testing](#testing)
 - [Author and Acknowledgment](#author-and-acknowledgement)
 - [License](#license)
