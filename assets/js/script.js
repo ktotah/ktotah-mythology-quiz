@@ -111,8 +111,18 @@ function initializeQuizPage() {
             feedbackEl.textContent = "Correct!";
             feedbackEl.style.color = "green";
         } else {
+            // Deduct 5 seconds for incorrect answer
+            timerCount = Math.max(timerCount - 5, 0); //Ensure the timer doesn't go negative
+            // Update the timer display is necessary
+            timerEl.textContent = timerCount; // Update displayed time
+
             feedbackEl.textContent = "Wrong!";
             feedbackEl.style.color = "red";
+
+            // If the timer reaches zero, end the quiz
+            if (timerCount === 0) {
+                endQuiz();
+            }
         }
 
         // Store last feedback
@@ -130,17 +140,13 @@ function initializeQuizPage() {
     }
 
     // End Quiz Function 
-    // Concludes the quiz, stops the timer, and calculates the final score
+    // Concludes the quiz, stops the timer, and determines the final score
     function endQuiz() {
         feedbackEl.textContent = lastFeedback; // Display last feedback
         clearInterval(timer); // Stop the timer
 
-        // Calculate final score
-        let baseScore = 70; // Set the base score as 70 in this case because I have 7 questions on this quiz
-        currentScore = baseScore + (timerCount * 0.5) - ((questions.length - correctAnswers) * 10); // formula for score is you take the base score (70 in this case) and add half of the number of seconds remaining on the timer as a bonus and subtract 10 points for every incorrect answer.
-        currentScore = Math.ceil(currentScore); // Round up the final score to the nearest whole number
-        currentScore = Math.max(currentScore, 0); // Ensure score doesn't go below 0 (which would never be the case the way I currently have the quiz set up with, but I wanted to implement this here in case of future additional questions, etc.)
-        
+        // Set the current score
+        currentScore = timerCount;
 
         setTimeout(() => {
             feedbackEl.textContent = ''; // Clear feedback after a delay
@@ -152,11 +158,10 @@ function initializeQuizPage() {
     }
 
     // Show Final Score Function
-    // Displays the final score to the user with a breakdown of their performance
+    // Displays the final score to the user
     function showFinalScore() {
-        // Display final score and details
         const finalScoreDiv = document.getElementById('final-score');
-        finalScoreDiv.innerHTML = `You got ${correctAnswers} out of ${questions.length} questions correct.<br>` + `You completed the quiz with ${timerCount} seconds remaining.<br><br>` + `Your final score is ${currentScore}.`;
+        finalScoreDiv.innerHTML = `All done!!!<br><br>` + `Your final score is ${timerCount}.`;
     }
 
     // Event listener for Submit Score Button
