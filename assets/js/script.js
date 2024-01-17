@@ -203,10 +203,15 @@ function displayHighScores() {
     //  Retrieve high scores from localStorage or initialize an empty array if none found
     let highScores = JSON.parse(localStorage.getItem('highScores')) || [];
 
-    // Populate the high scores list in the HTML with ranking
-    scoreListDiv.innerHTML = highScores
-    .map((score, index) => `<p>${index +1}. ${score.initials} - ${score.score}</p>`)
-    .join('');
+    if (highScores.length === 0){
+        // Display a message when there are no high scores
+        scoreListDiv.innerHTML = '<p style="color: grey;">no current high scores</p>';
+    } else {
+        // Populate the high scores list in the HTML with ranking
+        scoreListDiv.innerHTML = highScores
+            .map((score, index) => `<p>${index +1}. ${score.initials} - ${score.score}</p>`)
+            .join('');
+    }
 
     // Event listener for clearing the high scores
     const clearScoresBtn = document.getElementById('clear-scores');
